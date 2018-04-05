@@ -1,0 +1,12 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "my-calendar-client-side-solution",
+    "id": "b8e55608-3a2a-44c2-9d55-560026fff36e",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true
+  },
+  "paths": {
+    "zippedPackage": "solution/my-calendar.sppkg"
+  }
+}

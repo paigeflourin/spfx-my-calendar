@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.4.1",
+    "libraryName": "my-calendar",
+    "libraryId": "b8e55608-3a2a-44c2-9d55-560026fff36e",
+    "environment": "spo"
+  }
+}
