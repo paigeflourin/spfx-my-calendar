@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 ## my-calendar
 
-This is where you include your WebPart documentation.
+SharePoint Framework Application that shows your personal calendar and events
 
 ### Building the code
 
@@ -24,8 +23,4 @@ gulp clean - TODO
 gulp test - TODO
 gulp serve - TODO
 gulp bundle - TODO
-gulp package-solution - TODO
-=======
-# spfx-my-calendar
-SharePoint Framework Application that shows your personal calendar and events
->>>>>>> 692d2f35d82a54184be5801666028b6136e656f8
+gulp package-solution - TODO 
