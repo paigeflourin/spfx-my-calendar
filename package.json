@@ -11,15 +11,18 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "react": "15.6.2",
-    "react-dom": "15.6.2",
-    "@types/react": "15.6.6",
-    "@types/react-dom": "15.5.6",
     "@microsoft/sp-core-library": "~1.4.1",
-    "@microsoft/sp-webpart-base": "~1.4.1",
     "@microsoft/sp-lodash-subset": "~1.4.1",
     "@microsoft/sp-office-ui-fabric-core": "~1.4.1",
-    "@types/webpack-env": ">=1.12.1 <1.14.0"
+    "@microsoft/sp-webpart-base": "~1.4.1",
+    "@types/react": "15.6.6",
+    "@types/react-dom": "15.5.6",
+    "@types/react-fontawesome": "^1.6.2",
+    "@types/webpack-env": ">=1.12.1 <1.14.0",
+    "classnames": "^2.2.5",
+    "react": "15.6.2",
+    "react-dom": "15.6.2",
+    "react-events-calendar": "^1.0.0-beta.3"
   },
   "devDependencies": {
     "@microsoft/sp-build-web": "~1.4.1",
