@@ -10,14 +10,18 @@ import {
 import * as strings from 'MyCalendarWebPartStrings';
 import MyCalendar from './components/MyCalendar';
 import { IMyCalendarProps } from './components/IMyCalendarProps';
+import ClientMode from './components/ClientMode';
+
 
 export interface IMyCalendarWebPartProps {
   description: string;
+  clientMode: ClientMode;
 }
 
 export default class MyCalendarWebPart extends BaseClientSideWebPart<IMyCalendarWebPartProps> {
 
   public render(): void {
+
     const element: React.ReactElement<IMyCalendarProps > = React.createElement(
       MyCalendar,
       {

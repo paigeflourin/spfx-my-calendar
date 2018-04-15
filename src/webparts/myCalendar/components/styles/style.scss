@@ -1,6 +1,17 @@
 @import "utils/functions";
 @import "config/variables";
 
+
+.calendar-event{
+  color: #ef3c35;
+  font-size: 18px;
+  display:block;
+}
+
+.calendar-event-title{
+  font-weight:700;
+  margin:2%;
+}
 .calendar {
   width: 100%;
   user-select: none;
@@ -47,7 +58,8 @@
 
   // Date selector
   .calendar__date-selector {
-    float: right;
+    text-align:-webkit-center;
+    font-size: px-to-rem(15);
 
     .calendar__date-selector__controller {
       width: px-to-rem(30);
@@ -71,14 +83,15 @@
       width: px-to-rem(100);
       display: inline-block;
       text-align: center;
-      font-size: px-to-rem(14);
+      font-size: px-to-rem(15);
+      
     }
   }
 
   // Calendar header
   .calendar__header {
     width: 100%;
-    display: inline-block;
+    display: inline-flex;
     margin-bottom: px-to-rem(10);
 
     h1 {
@@ -89,10 +102,10 @@
     }
 
     .calendar__header__day-name {
-      display: inline-block;
-      width: calc(100% / 7);
+      display: inline-flex;
+      width: calc(100% / 8); //mods for saturday
       padding-left: px-to-rem(10);
-      font-size: px-to-rem(14);
+      font-size: px-to-rem(17);
       color: $color-silver-dark;
     }
   }
@@ -101,10 +114,10 @@
   .calendar__month-view {
     .calendar__month-view__days {
       .calendar__month-view__days__item {
-        display: inline-block;
-        width: calc(100% / 7);
+        display: inline-flex;
+        width: calc(100% / 8); // mods for 7 columns
         height: px-to-rem(50);
-        padding: px-to-rem(10) 0 0 px-to-rem(10);
+        padding: px-to-rem(5) 0 0 px-to-rem(5);
         border: 1px solid $color-silver;
         border-left: 0;
         border-top: 0;
@@ -112,7 +125,7 @@
         cursor: pointer;
 
         &:first-child,
-        &:nth-child(8),
+        &:nth-child(8), //7
         &:nth-child(15),
         &:nth-child(22),
         &:nth-child(29),
@@ -173,7 +186,7 @@
           display: inline-block;
 
           .calendar__hours__hour__days__item {
-            width: calc((100% / 7));
+            width: calc((100% / 8)); //mods
             display: inline-block;
             cursor: pointer;
 
@@ -249,3 +262,4 @@
     }
   }
 }
+

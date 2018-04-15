@@ -75,7 +75,7 @@ export default class Calendar extends React.Component<any,any> {
     };
 
     handleSelectedDate = (date) => {
-        this.props.onDateSelect(date);
+        this.props.onDateSelect(this.getEvents(date));
     };
 
     handleMonthChange = (month) => {
