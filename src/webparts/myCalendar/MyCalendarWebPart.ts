@@ -4,7 +4,8 @@ import { Version } from '@microsoft/sp-core-library';
 import {
   BaseClientSideWebPart,
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneChoiceGroup
 } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'MyCalendarWebPartStrings';
@@ -16,6 +17,7 @@ import ClientMode from './components/ClientMode';
 export interface IMyCalendarWebPartProps {
   description: string;
   clientMode: ClientMode;
+  title: string;
 }
 
 export default class MyCalendarWebPart extends BaseClientSideWebPart<IMyCalendarWebPartProps> {
@@ -25,7 +27,9 @@ export default class MyCalendarWebPart extends BaseClientSideWebPart<IMyCalendar
     const element: React.ReactElement<IMyCalendarProps > = React.createElement(
       MyCalendar,
       {
-        description: this.properties.description
+        httpClient: this.context.httpClient,
+        title: this.properties.title,
+        webPartId: this.context.instanceId
       }
     );
 
@@ -47,9 +51,9 @@ export default class MyCalendarWebPart extends BaseClientSideWebPart<IMyCalendar
             {
               groupName: strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
-                })
+                PropertyPaneTextField('title', {
+                  label: strings.TitleFieldLabel
+                }) 
               ]
             }
           ]
