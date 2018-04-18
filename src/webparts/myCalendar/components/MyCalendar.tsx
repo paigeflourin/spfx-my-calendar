@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import  Calendar  from './Calendar';
 import { IEventItem } from './IEventItem';
 import { HttpClient, HttpClientResponse } from '@microsoft/sp-http';
-import * as AuthenticationContext from 'adal-angular';
+import * as AuthenticationContext  from 'adal-angular';
 import adalConfig from '../AdalConfig';
 import { IAdalConfig } from '../../IAdalConfig';
 import '../../WebPartAuthenticationContext';
@@ -71,13 +71,13 @@ export default class MyCalendar extends React.Component<IMyCalendarProps, any> {
     }
 
     public componentDidMount(): void {
-        
+        //this.signIn();
         console.log("entered component did mount");
         
         this.authCtx.handleWindowCallback();
 
         if (window !== window.top) {
-        return;
+            return;
         }
         
 
@@ -154,7 +154,7 @@ export default class MyCalendar extends React.Component<IMyCalendarProps, any> {
     };
     
     public render(): React.ReactElement<IMyCalendarProps> { 
-        const login: JSX.Element = this.state.signedIn ? <div /> : <button onClick={() => { this.signIn(); } }><span>Sign in</span><span>Sign in to see your upcoming meetings</span></button>;
+        const login: JSX.Element = this.state.signedIn ? <div /> : <button className={`${styles.button}`} onClick={() => { this.signIn(); } }><span>Sign in</span><span>Sign in to see your upcoming meetings</span></button>;
         let events = null;
         if (this.state.selectedDateEvents) {
             events = this.renderEvents();
@@ -188,22 +188,28 @@ export default class MyCalendar extends React.Component<IMyCalendarProps, any> {
             return previousState;
         });
 
+        
+        console.log("loading meetings");
         this.getGraphAccessToken()
             .then((accessToken: string): Promise<IEventItem[]> => {
-            return MyCalendar.getUpcomingMeetings(accessToken, this.props.httpClient);
+                console.log(accessToken);
+                return MyCalendar.getUpcomingMeetings(accessToken, this.props.httpClient);
             })
             .then((events: IEventItem[]): void => {
-            this.setState((prevState: IMyCalendarState, props: IMyCalendarProps): IMyCalendarState => {
-                prevState.loading = false;
-                prevState.events = events;
-                return prevState;
-            });
+                console.log(events);
+                this.setState((prevState: IMyCalendarState, props: IMyCalendarProps): IMyCalendarState => {
+                    prevState.loading = false;
+
+                    prevState.events = events;
+                    return prevState;
+                });
             }, (error: any): void => {
-            this.setState((prevState: IMyCalendarState, props: IMyCalendarProps): IMyCalendarState => {
-                prevState.loading = false;
-                prevState.error = error;
-                return prevState;
-            });
+                console.log(error);
+                this.setState((prevState: IMyCalendarState, props: IMyCalendarProps): IMyCalendarState => {
+                    prevState.loading = false;
+                    prevState.error = error;
+                    return prevState;
+                });
             });
     }
 
@@ -212,17 +218,22 @@ export default class MyCalendar extends React.Component<IMyCalendarProps, any> {
             const graphResource: string = 'https://graph.microsoft.com';
             const accessToken: string = this.authCtx.getCachedToken(graphResource);
             if (accessToken) {
-            resolve(accessToken);
-            return;
+                console.log(accessToken);
+                resolve(accessToken);
+                return;
             }
-
+            console.log(this.authCtx);
+            console.log(this.authCtx.loginInProgress());
             if (this.authCtx.loginInProgress()) {
-            reject('Login already in progress');
-            return;
+                console.log("logging in");
+                reject('Login already in progress');
+                return;
             }
 
+            
             this.authCtx.acquireToken(graphResource, (error: string, token: string) => {
             if (error) {
+                console.log(error);
                 reject(error);
                 return;
             }

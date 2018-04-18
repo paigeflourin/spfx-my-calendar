@@ -20,6 +20,7 @@
     "@types/react-dom": "15.5.6",
     "@types/react-fontawesome": "^1.6.2",
     "@types/webpack-env": ">=1.12.1 <1.14.0",
+    "adal-angular": "^1.0.17",
     "classnames": "^2.2.5",
     "react": "15.6.2",
     "react-dom": "15.6.2",
